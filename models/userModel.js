@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    minlengh: 4,
   },
   password: {
     type: String,
@@ -16,6 +17,5 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const user = mongoose.model('Usuario', userSchema);
-
+const user = mongoose.model('User', userSchema);
 module.exports = user;

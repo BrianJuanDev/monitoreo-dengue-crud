@@ -13,12 +13,13 @@ const patientSchema = new mongoose.Schema({
     type: String, 
     enum: ['A', 'B', 'C'], 
     required: true,
+    // 'A'= Alto riesgo, 'B'= Tratamiento, 'C'= Recuperado
   },
-  CreatedAt: { 
+  createdAt: { 
     type: Date, 
     default: Date.now 
   },
 });
 
-const patient = mongoose.model('Paciente', patientSchema);
+const patient = mongoose.model('Patient', patientSchema);
 module.exports = patient;
