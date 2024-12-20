@@ -15,10 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // Conexión a MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/pacientes', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect('mongodb://127.0.0.1:27017/pacientes')
     .then(() => console.log('Conectado a MongoDB'))
     .catch(err => console.error('Error al conectar con MongoDB:', err));
 
