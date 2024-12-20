@@ -14,6 +14,13 @@ const authRoutes = require('./routes/authRoutes');
 app.use(express.json());
 app.use(cors());
 
+// Configurar motor de vistas como EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // Carpeta para las vistas
+
+// Middleware para servir archivos estáticos (CSS, JS, imágenes, etc.)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Conexión a MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/pacientes')
     .then(() => console.log('Conectado a MongoDB'))
