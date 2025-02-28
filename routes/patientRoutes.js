@@ -7,7 +7,42 @@ const Patient = require('../models/patientModel');
 
 const router = express.Router();
 
-// Buscar pacientes por nombre y estado
+/**
+ * @swagger
+ * /api/pacientes/search:
+ *   get:
+ *     summary: Buscar pacientes por nombre y estado
+ *     description: Devuelve una lista de pacientes que coincidan con los filtros proporcionados.
+ *     tags:
+ *       - Pacientes
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         description: Nombre del paciente (búsqueda parcial).
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *         description: Estado del paciente.
+ *     responses:
+ *       200:
+ *         description: Lista de pacientes encontrados.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Patient'
+ *       401:
+ *         description: No autorizado, token inválido o faltante.
+ *       500:
+ *         description: Error en la búsqueda de pacientes.
+ */
+
 router.get('/search', authenticate, async (req, res) => { 
     const { name, status } = req.query; // Obtener los filtros desde los parámetros de consulta
     try {
