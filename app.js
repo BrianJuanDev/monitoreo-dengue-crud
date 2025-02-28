@@ -24,35 +24,17 @@ const swaggerOptions = {
         },
         servers: [{ url: "http://localhost:3000" }],
     },
-    components: {
+        components: {
         schemas: {
             Patient: {
                 type: "object",
                 properties: {
-                    id: {
-                        type: "string",
-                        example: "6534ffde2349874b8c1e0987"
-                    },
-                    name: {
-                        type: "string",
-                        example: "Eze Suela"
-                    },
-                    age: {
-                        type: "integer",
-                        example: 21
-                    },
-                    status: {
-                        type: "string",
-                        example: "positivo"
-                    },
-                    address: {
-                        type: "string",
-                        example: "Calle Arizu 123, Mendoza"
-                    },
-                    phone: {
-                        type: "string",
-                        example: "+54 9 261 234 5678"
-                    }
+                    id: {type: "string", example: "6534ffde2349874b8c1e0987"},
+                    name: {type: "string", example: "Eze Suela"},
+                    age: {type: "integer", example: 21},
+                    status: {type: "string", example: "positivo"},
+                    address: {type: "string", example: "Calle Arizu 123, Mendoza"},
+                    phone: {type: "string", example: "+54 9 261 234 5678"}
                 }
             }
         },
