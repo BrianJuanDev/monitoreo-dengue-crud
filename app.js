@@ -2,14 +2,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
-const path = require('path');
-
-const app = express();
-
-//Importaciones de Swagger
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
 
 // Importar rutas
 const patientRoutes = require('./routes/patientRoutes');
@@ -26,7 +24,48 @@ const swaggerOptions = {
         },
         servers: [{ url: "http://localhost:3000" }],
     },
-    apis: ["./routes/*.js"], // Archivos donde están definidas las rutas
+    components: {
+        schemas: {
+            Patient: {
+                type: "object",
+                properties: {
+                    id: {
+                        type: "string",
+                        example: "6534ffde2349874b8c1e0987"
+                    },
+                    name: {
+                        type: "string",
+                        example: "Eze Suela"
+                    },
+                    age: {
+                        type: "integer",
+                        example: 21
+                    },
+                    status: {
+                        type: "string",
+                        example: "positivo"
+                    },
+                    address: {
+                        type: "string",
+                        example: "Calle Arizu 123, Mendoza"
+                    },
+                    phone: {
+                        type: "string",
+                        example: "+54 9 261 234 5678"
+                    }
+                }
+            }
+        },
+        securitySchemes: {
+            BearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT"
+                }
+            }
+        }
+    },
+    apis: ["./routes/*.js"] // Archivos donde están definidas las rutas
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
