@@ -3,8 +3,12 @@ const Patient = require('../models/patientModel');
 
 // Obtener todos los pacientes
 async function getPatients(req, res) {
+    const page = parseInt(req.query.page) || 1; // Página actual
+    const limit = parseInt(req.query.limit) || 10; // Cantidad de resultados por página
+    const skip = (page - 1) * limit; // Calcular cuántos documentos saltar
+
     try {
-        const patients = await Patient.find();  // Obtener todos los pacientes de la base de datos
+        const patients = await Patient.find().skip(skip).limit(limit);  // Obtener todos los pacientes de la base de datos
         res.json(patients);  // Responder con la lista de pacientes
     } catch (err) {
         res.status(500).json({ error: 'Error al obtener los pacientes', details: err.message });
